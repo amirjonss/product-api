@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -46,6 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(name: 'email', type: 'string', length: 255, unique: true)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Email]
+    #[ApiProperty(openapiContext: ['example' => 'user@example.com'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]

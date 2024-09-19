@@ -6,6 +6,7 @@ use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
@@ -38,9 +39,13 @@ class Product
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ApiProperty(
+        openapiContext: ['example' => '/api/categories/{category_id}']
+    )]
     private ?Category $category = null;
 
     #[ORM\ManyToOne]
+    #[ApiProperty(openapiContext: ['example' => '/api/media_objects/{mediaObject_id}'])]
     private ?MediaObject $image = null;
 
     public function getId(): ?int
