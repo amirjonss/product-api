@@ -65,6 +65,12 @@ class AskDeployCommand extends Command implements GetOutputInterface
         );
 
         $this->runSystemCommandAndNotify(
+            'mkdir -p ./public/media',
+            'create folder media',
+            'Could not create folder media'
+        );
+
+        $this->runSystemCommandAndNotify(
             'chown -R www-data:www-data ./public/media',
             'Changed owner of "./public/media" to www-data',
             'Could not change owner of "./public/media" to www-data'
