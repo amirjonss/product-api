@@ -24,7 +24,7 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['category:write', 'category:read'])]
+    #[Groups(['category:write', 'category:read', 'product:read'])]
     #[Assert\Length(max: 255)]
     #[Assert\NotBlank]
     private ?string $name = null;
