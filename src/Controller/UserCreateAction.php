@@ -26,11 +26,13 @@ class UserCreateAction extends AbstractController
     public function __construct(
         private UserFactory $userFactory,
         private UserManager $userManager,
+        private ValidatorInterface $validator
     ) {
     }
 
     public function __invoke(User $data, UserRepository $userRepository): User
     {
+        $this->validator->validate($data);
         $this->validate($data->getEmail(), userRepository: $userRepository);
         $user = $this->userFactory->create($data->getEmail(), $data->getPassword());
         $this->userManager->save($user, true);

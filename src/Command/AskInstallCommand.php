@@ -43,7 +43,7 @@ class AskInstallCommand extends Command implements GetOutputInterface
 
     protected function configure(): void
     {
-        $this->setDescription("Do first settings for Api-Starter-Kit");
+        $this->setDescription("Do first settings for product-api");
     }
 
     protected function execute(

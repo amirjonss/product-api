@@ -11,9 +11,14 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['product:read']],
+    denormalizationContext: ['groups' => ['product:write']],
+)]
 #[ApiFilter(SearchFilter::class, properties: [
     'id' => 'exact',
     'name' => 'partial',
@@ -27,25 +32,33 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['product:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:read', 'product:write'])]
+    #[Assert\Length(max: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(['product:read', 'product:write'])]
+    #[Assert\Length(max: 255)]
+    #[Assert\Positive]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ApiProperty(
-        openapiContext: ['example' => '/api/categories/{category_id}']
-    )]
+    #[ApiProperty(openapiContext: ['example' => '/api/categories/{category_id}'])]
+    #[Groups(['product:read', 'product:write'])]
     private ?Category $category = null;
 
     #[ORM\ManyToOne]
-    #[ApiProperty(openapiContext: ['example' => '/api/media_objects/{mediaObject_id}'])]
+    #[ApiProperty(openapiContext: ['example' => '/api/media_objects/{media_object_id}'])]
+    #[Groups(['product:read', 'product:write'])]
     private ?MediaObject $image = null;
 
     public function getId(): ?int

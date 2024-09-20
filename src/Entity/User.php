@@ -52,6 +52,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     #[Groups(['user:write'])]
+    #[Assert\Length(min: 6, max: 255)]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     public function getId(): ?int
