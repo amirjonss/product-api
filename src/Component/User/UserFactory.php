@@ -8,11 +8,9 @@ use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
- * Class UserFactory
+ * Class UserFactory.
  *
  * UserFactory
- *
- * @package App\Component\User
  */
 readonly class UserFactory
 {

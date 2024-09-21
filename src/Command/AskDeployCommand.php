@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Command;
@@ -81,7 +82,7 @@ class AskDeployCommand extends Command implements GetOutputInterface
     {
         $args = [
             '--allow-no-migration' => true,
-            '--no-interaction'     => true,
+            '--no-interaction' => true,
         ];
 
         $this->runCommandAndNotify('doctrine:migrations:migrate', $args);

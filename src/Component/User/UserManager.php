@@ -8,11 +8,9 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * Class UserManager
+ * Class UserManager.
  *
  * UserManager
- *
- * @package App\Component\User
  */
 readonly class UserManager
 {
@@ -20,7 +18,7 @@ readonly class UserManager
     {
     }
 
-    public function save(User $user, bool $isNeedFlush):void
+    public function save(User $user, bool $isNeedFlush): void
     {
         $this->entityManager->persist($user);
 

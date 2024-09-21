@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Command\Traits;
 
@@ -7,11 +9,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 
 /**
- * Trait RunCommandsTrait
+ * Trait RunCommandsTrait.
  *
  * @mixin Command
  * @mixin GetOutputInterface
- * @package App\Command\Traits
  */
 trait RunCommandTrait
 {
@@ -28,8 +29,8 @@ trait RunCommandTrait
     private function runCommandAndNotify(
         string $name,
         array $arguments = [],
-        string $successText = null,
-        string $failText = null
+        ?string $successText = null,
+        ?string $failText = null
     ): void {
         if ($this->runCommand($name, $arguments) === 0) {
             $this->getSymfonyStyleOutput()->success($successText ?? "Command '$name' is successfully finished");
@@ -40,8 +41,8 @@ trait RunCommandTrait
 
     private function runSystemCommandAndNotify(
         string $command,
-        string $successText = null,
-        string $failText = null
+        ?string $successText = null,
+        ?string $failText = null
     ): void {
         if (system($command) === false) {
             $this->getSymfonyStyleOutput()->error($failText ?? "Failed on run command '$command'");

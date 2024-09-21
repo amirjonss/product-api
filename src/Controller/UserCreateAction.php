@@ -15,11 +15,9 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
- * Class UserCreateAction
+ * Class UserCreateAction.
  *
  * UserCreateAction
- *
- * @package App\Controller
  */
 class UserCreateAction extends AbstractController
 {

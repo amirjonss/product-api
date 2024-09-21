@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Encoder;
 
-/**
+/*
  * Class MultipartDecoder
  *
  * MultipartDecoder
@@ -31,11 +31,11 @@ final class MultipartDecoder implements DecoderInterface
         }
 
         return array_map(static function (string $element) {
-                // Multipart form values will be encoded in JSON.
-                $decoded = json_decode($element, true);
+            // Multipart form values will be encoded in JSON.
+            $decoded = json_decode($element, true);
 
-                return \is_array($decoded) ? $decoded : $element;
-            }, $request->request->all()) + $request->files->all();
+            return \is_array($decoded) ? $decoded : $element;
+        }, $request->request->all()) + $request->files->all();
     }
 
     public function supportsDecoding(string $format): bool

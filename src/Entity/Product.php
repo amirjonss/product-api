@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     'id' => 'exact',
     'name' => 'partial',
     'description' => 'partial',
-    'category'=> 'exact'
+    'category' => 'exact'
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['price'])]
 #[ApiFilter(OrderFilter::class, properties: ['id', 'name', 'price'])]

@@ -36,7 +36,7 @@ class AskGenerateJWTKeysCommand extends Command implements GetOutputInterface
 
     protected function configure(): void
     {
-        $this->setDescription("Generate jwt keys. If keys are exist they are will be dropped");
+        $this->setDescription('Generate jwt keys. If keys are exist they are will be dropped');
     }
 
     protected function execute(
@@ -49,6 +49,7 @@ class AskGenerateJWTKeysCommand extends Command implements GetOutputInterface
         $this->createJwtFolder();
         $this->createPassphrase();
         $this->allowAccessToPrivateKey();
+
         return Command::SUCCESS;
     }
 
